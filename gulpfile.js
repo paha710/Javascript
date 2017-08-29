@@ -6,7 +6,7 @@ const gulp = require('gulp'),
        pug = require('gulp-pug');
 
 gulp.task('views', function() {
-  gulp.src('src/templates/*.pug')
+  gulp.src('src/templates/main.pug')
     .pipe(pug({
       filename: 'test.html'
     }))
