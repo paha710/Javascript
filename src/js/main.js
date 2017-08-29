@@ -171,3 +171,49 @@ forEach(
 );
 
 
+/**********/
+
+function chirp(n) {
+  return n > 1 ? chirp(n-1) + "-chirp" : "-chirp";
+}
+console.log(chirp(2));
+assert(chirp(3) === "chip-chirp", " Calling the name function comes naturally.");
+
+/****Сохранение одинаковых функций в колекцию******/
+
+var store = {
+  nexId: 1,
+  cache: {},
+  add: function (fn) {
+    if(!fn.id){ // если id нет
+      fn.id = store.nexId++; // присваеваем его
+      return !!(store.cache[fn.id] = fn); // записываем в память , возрващаем true
+    }
+  }
+};
+
+function ninja() {}
+assert(store.add(ninja), "Функция была сохранена ");
+assert(!store.add(ninja), "Можно добавить только разные функции");
+
+/****Запоминание вычеслений******/
+
+function isPrime(value) {
+  if(!isPrime.answers) isPrime.answers = {};
+  if(isPrime.answers[value] != null) {
+    return isPrime.answers[value];
+  }
+  var prime = value != 1;
+
+  for(var i = 2; i < value; i++) {
+    if(value % i == 0) {
+      prime = false;
+      break;
+    }
+  }
+   return isPrime.answers[value] = prime;
+}
+
+assert(isPrime(5), "5 простое число");
+assert(isPrime.answers[5], 'Ответ был запомнен');
+
