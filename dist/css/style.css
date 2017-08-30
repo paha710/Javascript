@@ -1,2 +1,9 @@
 ul#results li.fail {
-  background-color: red; }
+  background-color: red;
+  text-decoration: line-through; }
+
+ul#results .pass {
+  background-color: green; }
+
+#box {
+  position: relative; }

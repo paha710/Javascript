@@ -239,3 +239,42 @@ assert(!tooLate, "Outer can`t see the ronin");
 
 outerFunction();
 later('wakizaschi');
+
+/**********/
+ function Ninja() {
+   var feints = 0;
+   this.getFeints = function () {
+     return feints;
+   };
+
+   this.feint = function () {
+     feints++;
+   };
+ }
+
+ var ninja = new Ninja();
+
+ninja.feint();
+
+assert(ninja.getFeints() == 1, "We`re able to access thi internal feint count");
+
+assert(ninja.getFeints === undefined, "And private data is innaccessible to us.");
+
+/**********/
+function animateIt(elementId) {
+  var elem = document.getElementById(elementId);
+  var tick = 0;
+  var timer = setInterval( function () {
+    if(tick < 100) {
+      elem.style.left = elem.style.top = tick + "px";
+      tick++;
+    } else {
+      clearInterval(timer);
+      assert(tick == 100 , "tick accessed via a closure");
+      assert(elem,"element also accessed via a closure");
+      assert(timer,"timer reference also obtained via a closure");
+    }
+  },10);
+}
+
+animateIt('box');
