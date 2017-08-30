@@ -2,7 +2,7 @@
 /****Simple test******/
 function assert(value, desc) {
   var li = document.createElement("li");
-  li.className = value ? "pass":"fali";
+  li.className = value ? "pass":"fail";
   li.appendChild( document.createTextNode(desc));
   document.getElementById("results").appendChild(li);
 }
@@ -233,9 +233,9 @@ function outerFunction() {
   later = innerFunction;
 }
 
-assert(!tooLate, "Outer can`t see the ronin");
 
 var tooLate = 'ronin';
+assert(!tooLate, "Outer can`t see the ronin");
 
 outerFunction();
 later('wakizaschi');
